@@ -1,3 +1,49 @@
+function isUnitedStates(name)
+{
+	if (name === "United States" || name == "United States (Intl Context)")
+		return true;
+
+	return false; 
+}
+
+
+function theData_InternationalTotal(media)
+{
+	
+	var data = theData(); 
+	
+	var mediaData = data[media];
+	
+	var totalValue = 0; 
+	
+	for (var key in mediaData) {
+		
+		if (key != "United States" && key != "United States (Intl Context)") { 
+  			var value = mediaData[key];
+			totalValue += value
+		}
+	}
+
+	return totalValue; 
+}
+
+
+function theData_NationalTotal(media)
+{
+	var data = theData(); 
+	
+	var mediaData = data[media];
+	
+	var totalValue = 0; 
+	
+	totalValue += mediaData["United States"]; 
+	totalValue += mediaData["United States (Intl Context)"];
+	
+	
+	return totalValue; 
+}
+
+
 function theData() 
 {
 
@@ -88,7 +134,7 @@ function theData()
      d["Guardian"]["Libya"]=135;
      d["Guardian"]["Finland"]=35;
      d["Guardian"]["Central African Republic"]=5;
-     d["Guardian"]["United States (Intl Context) "]=1393;
+     d["Guardian"]["United States (Intl Context)"]=1393;
      d["Guardian"]["Sweden"]=98;
      d["Guardian"]["Vietnam"]=174;
      d["Guardian"]["Mali"]=78;
@@ -133,7 +179,7 @@ function theData()
      d["Guardian"]["Denmark"]=54;
      d["Guardian"]["Poland"]=82;
      d["Guardian"]["Moldova"]=7;
-     d["Guardian"]["Russian"]=750;
+     d["Guardian"]["Russia"]=750;
      d["Guardian"]["Uruguay"]=22;
      d["Guardian"]["Croatia"]=35;
      d["Guardian"]["Switzerland"]=81;
@@ -275,7 +321,7 @@ function theData()
      d["Washington Post"]["Libya"]=242;
      d["Washington Post"]["Indonesia"]=71;
      d["Washington Post"]["Central African Republic"]=9;
-     d["Washington Post"]["United States (Intl Context) "]=3917;
+     d["Washington Post"]["United States (Intl Context)"]=3917;
      d["Washington Post"]["Sweden"]=90;
      d["Washington Post"]["Vietnam"]=258;
      d["Washington Post"]["Mali"]=91;
@@ -311,7 +357,7 @@ function theData()
      d["Washington Post"]["Belgium"]=83;
      d["Washington Post"]["Chile"]=49;
      d["Washington Post"]["Puerto Rico"]=73;
-     d["Washington Post"]["Russian"]=1145;
+     d["Washington Post"]["Russia"]=1145;
      d["Washington Post"]["Thailand"]=43;
      d["Washington Post"]["Haiti"]=45;
      d["Washington Post"]["Iraq"]=827;
@@ -458,7 +504,7 @@ function theData()
      d["Reuters"]["Libya"]=273;
      d["Reuters"]["Indonesia"]=88;
      d["Reuters"]["Central African Republic"]=8;
-     d["Reuters"]["United States (Intl Context) "]=4139;
+     d["Reuters"]["United States (Intl Context)"]=4139;
      d["Reuters"]["Sweden"]=67;
      d["Reuters"]["Vietnam"]=165;
      d["Reuters"]["Mali"]=56;
@@ -495,7 +541,7 @@ function theData()
      d["Reuters"]["El Salvador"]=31;
      d["Reuters"]["Chile"]=159;
      d["Reuters"]["Puerto Rico"]=62;
-     d["Reuters"]["Russian"]=1595;
+     d["Reuters"]["Russia"]=1595;
      d["Reuters"]["Thailand"]=48;
      d["Reuters"]["Haiti"]=28;
      d["Reuters"]["Iraq"]=1145;
@@ -641,7 +687,7 @@ function theData()
      d["Buzzfeed News"]["Cayman Islands"]=6;
      d["Buzzfeed News"]["Libya"]=46;
      d["Buzzfeed News"]["Indonesia"]=33;
-     d["Buzzfeed News"]["United States (Intl Context) "]=680;
+     d["Buzzfeed News"]["United States (Intl Context)"]=680;
      d["Buzzfeed News"]["Sweden"]=33;
      d["Buzzfeed News"]["Vietnam"]=50;
      d["Buzzfeed News"]["Mali"]=41;
@@ -676,7 +722,7 @@ function theData()
      d["Buzzfeed News"]["El Salvador"]=23;
      d["Buzzfeed News"]["Chile"]=17;
      d["Buzzfeed News"]["Puerto Rico"]=36;
-     d["Buzzfeed News"]["Russian"]=319;
+     d["Buzzfeed News"]["Russia"]=319;
      d["Buzzfeed News"]["Thailand"]=22;
      d["Buzzfeed News"]["Haiti"]=30;
      d["Buzzfeed News"]["Iraq"]=176;
@@ -821,7 +867,7 @@ function theData()
      d["New York Times"]["Libya"]=184;
      d["New York Times"]["Finland"]=33;
      d["New York Times"]["Central African Republic"]=7;
-     d["New York Times"]["United States (Intl Context) "]=3354;
+     d["New York Times"]["United States (Intl Context)"]=3354;
      d["New York Times"]["Sweden"]=96;
      d["New York Times"]["Vietnam"]=226;
      d["New York Times"]["Mali"]=99;
@@ -866,7 +912,7 @@ function theData()
      d["New York Times"]["Philippines"]=121;
      d["New York Times"]["Moldova"]=5;
      d["New York Times"]["French Guiana"]=2;
-     d["New York Times"]["Russian"]=731;
+     d["New York Times"]["Russia"]=731;
      d["New York Times"]["Namibia"]=10;
      d["New York Times"]["Switzerland"]=131;
      d["New York Times"]["Grenada"]=4;
@@ -1009,7 +1055,7 @@ function theData()
      d["CNN"]["Libya"]=212;
      d["CNN"]["Indonesia"]=99;
      d["CNN"]["Central African Republic"]=10;
-     d["CNN"]["United States (Intl Context) "]=3010;
+     d["CNN"]["United States (Intl Context)"]=3010;
      d["CNN"]["Sweden"]=99;
      d["CNN"]["Vietnam"]=184;
      d["CNN"]["Mali"]=109;
@@ -1055,7 +1101,7 @@ function theData()
      d["CNN"]["Philippines"]=145;
      d["CNN"]["Moldova"]=7;
      d["CNN"]["French Guiana"]=2;
-     d["CNN"]["Russian"]=1053;
+     d["CNN"]["Russia"]=1053;
      d["CNN"]["Croatia"]=35;
      d["CNN"]["Switzerland"]=108;
      d["CNN"]["Grenada"]=3;
@@ -1193,7 +1239,7 @@ function theData()
      d["New York Post"]["Libya"]=82;
      d["New York Post"]["Indonesia"]=49;
      d["New York Post"]["Central African Republic"]=1;
-     d["New York Post"]["United States (Intl Context) "]=1074;
+     d["New York Post"]["United States (Intl Context)"]=1074;
      d["New York Post"]["Sweden"]=69;
      d["New York Post"]["Vietnam"]=101;
      d["New York Post"]["Mali"]=112;
@@ -1236,7 +1282,7 @@ function theData()
      d["New York Post"]["Denmark"]=36;
      d["New York Post"]["Poland"]=50;
      d["New York Post"]["French Guiana"]=1;
-     d["New York Post"]["Russian"]=554;
+     d["New York Post"]["Russia"]=554;
      d["New York Post"]["Croatia"]=17;
      d["New York Post"]["Switzerland"]=52;
      d["New York Post"]["Grenada"]=2;
@@ -1361,7 +1407,7 @@ function theData()
      d["Fox News"]["Libya"]=70;
      d["Fox News"]["Cayman Islands"]=6;
      d["Fox News"]["Central African Republic"]=2;
-     d["Fox News"]["United States (Intl Context) "]=703;
+     d["Fox News"]["United States (Intl Context)"]=703;
      d["Fox News"]["Sweden"]=20;
      d["Fox News"]["Vietnam"]=50;
      d["Fox News"]["Mali"]=41;
@@ -1401,7 +1447,7 @@ function theData()
      d["Fox News"]["Denmark"]=9;
      d["Fox News"]["Philippines"]=22;
      d["Fox News"]["Moldova"]=1;
-     d["Fox News"]["Russian"]=226;
+     d["Fox News"]["Russia"]=226;
      d["Fox News"]["Croatia"]=2;
      d["Fox News"]["Switzerland"]=18;
      d["Fox News"]["Grenada"]=4;
@@ -1534,7 +1580,7 @@ function theData()
      d["NPR"]["Libya"]=127;
      d["NPR"]["Finland"]=32;
      d["NPR"]["Central African Republic"]=11;
-     d["NPR"]["United States (Intl Context) "]=1799;
+     d["NPR"]["United States (Intl Context)"]=1799;
      d["NPR"]["Sweden"]=95;
      d["NPR"]["Vietnam"]=200;
      d["NPR"]["Mali"]=91;
@@ -1578,7 +1624,7 @@ function theData()
      d["NPR"]["Gambia"]=11;
      d["NPR"]["Philippines"]=88;
      d["NPR"]["Moldova"]=6;
-     d["NPR"]["Russian"]=619;
+     d["NPR"]["Russia"]=619;
      d["NPR"]["Namibia"]=12;
      d["NPR"]["Switzerland"]=65;
      d["NPR"]["Grenada"]=5;
@@ -1645,5 +1691,212 @@ function theData()
      d["NPR"]["Botswana"]=12;
 	  
 
+	 return d; 
+}
+
+
+function thePopulation()
+{
+	d = {};
+	
+	 d["Afghanistan"]=33400;
+     d["Albania"]=2876;
+     d["Algeria"]=40762;
+     d["Angola"]=27360;
+     d["Antiguaand Barbuda"]=90;
+     d["Argentina"]=43600;
+     d["Armenia"]=2991;
+     d["Australia"]=24386;
+     d["Austria"]=8740;
+     d["Azerbaijan"]=9492;
+     d["TheBahamas"]=368;
+     d["Bahrain"]=1319;
+     d["Bangladesh"]=161513;
+     d["Barbados"]=280;
+     d["Belarus"]=9498;
+     d["Belgium"]=11311;
+     d["Belize"]=376;
+     d["Benin"]=11128;
+     d["Bhutan"]=791;
+     d["Bolivia"]=10896;
+     d["Bosniaand Herzegovina"]=3854;
+     d["Botswana"]=2154;
+     d["Brazil"]=206101;
+     d["Brunei Darussalam"]=423;
+     d["Bulgaria"]=7102;
+     d["Burkina Faso"]=18420;
+     d["Burundi"]=9648;
+     d["CaboVerde"]=531;
+     d["Cambodia"]=15776;
+     d["Cameroon"]=23685;
+     d["Canada"]=36229;
+     d["Central African Republic"]=4888;
+     d["Chad"]=11855;
+     d["Chile"]=18196;
+     d["China"]=1382710;
+     d["Colombia"]=48748;
+     d["Comoros"]=823;
+     d["Congo"]=84130;
+     d["Costa Rica"]=4909;
+     d["Coted'Ivoire"]=24327;
+     d["Croatia"]=4170;
+	 d["Cuba"]=11000;
+     d["Cyprus"]=848;
+     d["Czech Republic"]=10554;
+     d["Denmark"]=5707;
+     d["Djibouti"]=993;
+     d["Dominica"]=71;
+     d["Dominican Republic"]=10075;
+     d["Ecuador"]=16529;
+     d["Egypt"]=90200;
+     d["El Salvador"]=6340;
+     d["Equatorial Guinea"]=821;
+     d["Eritrea"]=6502;
+     d["Estonia"]=1312;
+     d["Ethiopia"]=91196;
+     d["Fiji"]=873;
+     d["Finland"]=5487;
+     d["France"]=64605;
+     d["Gabon"]=1881;
+     d["The Gambia"]=2057;
+     d["Georgia"]=3701;
+     d["Germany"]=82492;
+     d["Ghana"]=27573;
+     d["Greece"]=10784;
+     d["Grenada"]=107;
+     d["Guatemala"]=16582;
+     d["Guinea"]=12654;
+     d["Guinea-Bissau"]=1664;
+     d["Guyana"]=768;
+     d["Haiti"]=10848;
+     d["Honduras"]=8190;
+     d["Hong Kong"]=7367;
+     d["Hungary"]=9830;
+     d["Iceland"]=336;
+     d["India"]=1299800;
+     d["Indonesia"]=258705;
+     d["Iran"]=80460;
+     d["Iraq"]=37884;
+     d["Ireland"]=4699;
+     d["Israel"]=8543;
+     d["Palestine"]=4000;
+     d["Italy"]=60666;
+     d["Jamaica"]=2829;
+     d["Japan"]=126960;
+     d["Jordan"]=6976;
+     d["Kazakhstan"]=17927;
+     d["Kenya"]=45451;
+     d["Kiribati"]=112;
+     d["South korea"]=51246;
+	 d["Nouth Korea"]=51246;
+     d["North Korea"]=25000;
+     d["Kosovo"]=1839;
+     d["Kuwait"]=4225;
+     d["KyrgyzRepublic"]=6107;
+     d["Laos"]=6585;
+     d["Latvia"]=1969;
+     d["Lebanon"]=4467;
+     d["Lesotho"]=1920;
+     d["Liberia"]=4399;
+     d["Libya"]=6385;
+     d["Lithuania"]=2871;
+     d["Luxembourg"]=576;
+     d["Macao"]=645;
+     d["Macedonia"]=2073;
+     d["Madagascar"]=24916;
+     d["Malawi"]=18632;
+     d["Malaysia"]=31634;
+     d["Maldives"]=354;
+     d["Mali"]=18289;
+     d["Malta"]=434;
+     d["MarshallIslands"]=54;
+     d["Mauritania"]=3794;
+     d["Mauritius"]=1264;
+     d["Mexico"]=122273;
+     d["Micronesia"]=102;
+     d["Moldova"]=3551;
+     d["Mongolia"]=3014;
+     d["Montenegro"]=623;
+     d["Morocco"]=34487;
+     d["Mozambique"]=28751;
+     d["Myanmar"]=52254;
+     d["Namibia"]=2324;
+     d["Nauru"]=13;
+     d["Nepal"]=28853;
+     d["Netherlands"]=17030;
+     d["New Zealand"]=4747;
+     d["Nicaragua"]=6150;
+     d["Niger"]=18194;
+     d["Nigeria"]=183636;
+     d["Norway"]=5252;
+     d["Oman"]=4009;
+     d["Pakistan"]=193560;
+     d["Palau"]=18;
+     d["Panama"]=4037;
+     d["Papua New Guinea"]=7911;
+     d["Paraguay"]=6855;
+     d["Peru"]=31481;
+     d["Philippines"]=104184;
+     d["Poland"]=37967;
+     d["Portugal"]=10325;
+     d["PuertoRico"]=3411;
+     d["Qatar"]=2618;
+     d["Romania"]=19760;
+     d["Russia"]=143440;
+     d["Rwanda"]=11530;
+     d["Samoa"]=195;
+     d["San Marino"]=34;
+     d["Sao Tome and Principe"]=208;
+     d["Saudi Arabia"]=31743;
+     d["Senegal"]=15600;
+     d["Serbia"]=7058;
+     d["Seychelles"]=94;
+     d["Sierra Leone"]=6439;
+     d["Singapore"]=5607;
+     d["Slovak Republic"]=5426;
+     d["Slovenia"]=2064;
+     d["Solomon Islands"]=601;
+     d["Somalia"]=14318;
+     d["South Africa"]=55620;
+     d["South Sudan"]=12499;
+	 d["South Korea"]=51000;
+     d["Spain"]=46399;
+     d["SriLanka"]=21252;
+     d["St.Kitts and Nevis"]=56;
+     d["St.Lucia"]=174;
+     d["St.Vincentand the Grenadines"]=110;
+     d["Sudan"]=39599;
+     d["Suriname"]=564;
+     d["Swaziland"]=1132;
+     d["Sweden"]=9995;
+	 d["Syria"]=18450
+     d["Switzerland"]=8327;
+     d["Taiwan"]=23540;
+     d["Tajikistan"]=8655;
+     d["Tanzania"]=48633;
+     d["Thailand"]=68981;
+     d["Timor-Leste"]=1212;
+     d["Togo"]=7509;
+     d["Tonga"]=104;
+     d["Trinidad and Tobago"]=1367;
+     d["Tunisia"]=11224;
+     d["Turkey"]=79815;
+     d["Turkmenistan"]=5463;
+     d["Tuvalu"]=11;
+     d["Uganda"]=36561;
+     d["Ukraine"]=42415;
+     d["United Arab Emirates"]=9856;
+     d["United Kingdom"]=65648;
+     d["United States"]=323298;
+	 d["United States (Intl Context)"]=323298; 
+     d["Uruguay"]=3480;
+     d["Uzbekistan"]=31343;
+     d["Vanuatu"]=275;
+     d["Venezuela"]=31029;
+     d["Vietnam"]=92691;
+     d["Yemen"]=29132;
+     d["Zambia"]=16717;
+     d["Zimbabwe"]=14501;
+	 
 	 return d; 
 }
