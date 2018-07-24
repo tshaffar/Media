@@ -4,7 +4,7 @@
 <!-- background image --> 
 <style>
 body  {
-    background-image: url("wrinkled.jpg"); // images/header.jpg");
+    background-image: url("images/header.jpg");
 	//background-repeat: no-repeat;
 	background-size: cover; 
 		
@@ -87,12 +87,12 @@ polyline{
 
 <ul>
     <li><a href="index.html">1</a></li>
-	<li><a href="p2.html">2</a></li>
-	<li><a class="active" href="p3.html">3</a></li>
-	<li><a href="p4.html">4</a></li>
-    <li><a href="p5.html">5</a></li>
-	<li><a href="p6.html">6</a></li>
-	<li><a href="p7.html">Next</a></li>
+	<li><a  class="active" href="p2.html">2</a></li>
+	<li><a href="p3.html">3</a></li>
+	<li><a href="p3.html">4</a></li>
+    <li><a href="p4.html">5</a></li>
+	<li><a href="p5.html">6</a></li>
+	<li><a href="p3.html">Next</a></li>
 	<li><a href="about.html">About Visualization</a></li>
 </ul>
 
@@ -101,9 +101,8 @@ polyline{
 
 <div id="my_header">
 	 	<h2><font color="blue"><center>Internationl Coverage By US News Media Outlets</center></font></h2>
-        <font color="blue"><center>Considering Population - should more populous countries get more coverage?</center></font>
-		<font color="black"><center>Select a media source.  Use the options to the right to investigate graph.  </center></font>
-		<font color="black"><center>Note that the X axis (Population) is logarithmic.    </center></font>
+        <p><font color="blue"><center>What Country Gets the Most Coverage?</center></font></p>
+		<p><font color="black"><center>Select a media source.  The bubbles show the number of articles about each country</center></font></p>
 
 <!-- Chcek Boxes -->
 	<div id="my_media_check_boxes">	
@@ -118,15 +117,7 @@ polyline{
 					<br></br>
 	<input type="checkbox" name="RemoveUS" id="RemoveUS"   onchange = "onMediaCheckBoxChange(this)" > Remove United States<br>
 	<input type="checkbox" id="RemoveChinaIndia"   onchange = "onMediaCheckBoxChange(this)" > Remove China And India<br>
-
-	 Show bottom % <input type="number" name="quantity" id="PercentShow" min="1" max="100" value="100"  onchange = "on20PercentChange(this, value)">
 	
-	<br></br> 
-	<img src="kiosk.jpg"  width="230" height="170">
-	
-	
-	
-	<!-- <div class="slider"></div> >
 </div> 
 	
 <!-- Chart -->
@@ -174,7 +165,7 @@ function change(my_dataset, redrawScale, color)
 
 	var rScale = d3.scale.linear()
 		.domain([0, 400]) // d3.max(my_dataset, function(d) { return d[1]; })])
-		.range([1, 10]);
+		.range([4, 4]);
 
 
 	// Remove Circles 
@@ -190,6 +181,8 @@ function change(my_dataset, redrawScale, color)
 		.enter() 
 	    .append("circle")
 		.attr("cx", function(d) {
+			//console.log(d[2]);
+			//console.log(d[0]); 
 			return xScale(d[0]);
 		})
 		.attr("cy", function(d) {
@@ -200,17 +193,10 @@ function change(my_dataset, redrawScale, color)
 		})
 		.attr("fill", color);
 
-		    //.text(function(d) {return d[2];})
-            //.attr("x", function(d) {return xScale(d[0]);})
-            //.attr("y", function (d) {return yScale(d[1]); });
-		
-
 	// Update Circles 
-	var dots = svg.selectAll("circle")
-		.data(my_dataset, function(d) { return d[2];} )
-			
-			
-	dots.transition()  // Transition from old to new
+	svg.selectAll("circle")
+		.data(my_dataset, function(d) { console.log(d[2]); return d[2];} )
+			.transition()  // Transition from old to new
                         .duration(1000)  // Length of animation
                         .each("start", function() {  // Start animation
                             d3.select(this)  // 'this' means the current element
@@ -234,18 +220,19 @@ function change(my_dataset, redrawScale, color)
                                 .transition()
                                 .duration(500)
                                 .attr("fill", "blue")  // Change color
-                                .attr("r", 5);  // Change radius
+                                .attr("r", 3);  // Change radius
                         });
 
 
-		/*dots.on("mouseover", function(d) {      
-			console.log("on circle!!!"); 
-		  })                  
-        .on("mouseout", function(d) {       
-            console.log("On out of circle");    
-        });*/
-		
-			
+						
+	/*					.on("mouseover", function() {
+        d3.select(this).enter().append("text")
+            .text(function(d) {return d.x;})
+            .attr("x", function(d) {return x(d.x);})
+            .attr("y", function (d) {return y(d.y);}); })		*/
+
+		//.attr("fill", color);			
+	
 	// Do Text!
 	svg.selectAll("text")
 		//.data(my_dataset, function(d) { return d[2];} )
@@ -258,7 +245,8 @@ function change(my_dataset, redrawScale, color)
 		.enter() 
 	    .append("text")
 		.attr("x", function(d) {
-		
+			console.log(d[0]);
+			console.log(d[2]); 
 			
 			return xScale(d[0]);
 		})
@@ -267,7 +255,6 @@ function change(my_dataset, redrawScale, color)
 		})
 		.attr("fill","red")
 		.text( function(d) { return d[2];} ); 
-
 	
 	svg.selectAll("text")
 		.data(my_dataset, function(d) {return d[2];} )
@@ -299,45 +286,20 @@ function change(my_dataset, redrawScale, color)
 	svg.append("g")
 		.attr("class", "axis")
 		.attr("transform", "translate(0," + (h - padding) + ")")
-		.call(xAxis)
-		
-		.append("text")
-		.attr("x",500 )
-        .attr("y", 50 )
-		.style("text-anchor", "middle")
-		.text("Population (000s)"); 
-		
-		
-
-     //   .style("text-anchor", "middle")
-       //  .text("State");
-		
-		
-		
+		.call(xAxis);
 
 	//Create Y axis
 	svg.append("g")
 		.attr("class", "axis")
 		.attr("transform", "translate(" + padding + ",0)")
-		.call(yAxis)
-		.append("text")
-		.attr("transform", "rotate(-90)")
-        .attr("y", -75)
-        .attr("x",-300)
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text("Num Articles");
+		.call(yAxis);
 	}
-	
-	//doSlider(5);
-	
 }
 
 
-
-
 //change(dataset, true);
-function generateData(mediaName, removeUS, ignoreChinaIndia, percent)
+
+function generateData(mediaName, removeUS, ignoreChinaIndia)
 {
 	
 	data = theData();
@@ -365,31 +327,11 @@ function generateData(mediaName, removeUS, ignoreChinaIndia, percent)
 			dataSet.push( [ population, numArt, key ] ); 		
   }
   
-  
-  if (percent === 100 ) {
-	return dataSet; 
-  }
-	// Remove any item that is not in bottom percent 
-	var max = d3.max(dataSet, function(d) { return d[1]; })
-	console.log(max); 
-	
-	var newDataSet = []; 
-	var newTop = (max * percent) / 100 ; 
-	//alert(newTop); 
-	
-	for (var i=0; i< dataSet.length; i++) {
-		if (dataSet[i][1] < newTop ) 
-			newDataSet.push (dataSet[i]); 
-	
-		console.log(i); 
-	}
-	
-	return newDataSet; 
+  return dataSet; 
 }
 
+function onMediaCheckBoxChange(element){
 
-function onChange(element, percent=100)
-{
 	dataset = [];
 	
 	var medias = [ "New York Times","Washington Post", "CNN", "Fox News", "Guardian", "Reuters", "NPR", "New York Post" ];
@@ -405,121 +347,15 @@ function onChange(element, percent=100)
 			
 	for (var i=0; i<medias.length; i++) {
 		if (document.getElementById(medias[i]).checked) {
-			dataSet = generateData( medias[i], ignoreUS, ignoreChinaIndia, percent );
+			dataSet = generateData( medias[i], ignoreUS, ignoreChinaIndia );
 			change( dataSet, true, "red"); 
 			break;  
 		}
 	}
 }
 
-function on20PercentChange(element, value ){
-
-console.log( value ); 
-onChange( element, value); 
-			
-}
-
-
-function onMediaCheckBoxChange(element){
-	document.getElementById("PercentShow").value = 100; 
-	onChange(null); 
-	
-}
-	
 
 		
 </script> 
-
-
-
-
-</script> 
-
-<style>
-.slider {
-  position: relative;
-  top: 40px;
-  left: 40px;
-}
-
-.slider-tray {
-  position: absolute;
-  width: 100%;
-  height: 6px;
-  border: solid 1px #ccc;
-  border-top-color: #aaa;
-  border-radius: 4px;
-  background-color: #f0f0f0;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-.slider-handle {
-  position: absolute;
-  top: 3px;
-}
-
-.slider-handle-icon {
-  width: 14px;
-  height: 14px;
-  border: solid 1px #aaa;
-  position: absolute;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  top: -7px;
-  left: -7px;
-}
-</style>
-
-<script>
-function doSlider(xxx) {
-var width = 100;
-
-var x = d3.scale.linear()
-    .domain([1, 100])
-    .range([5, width])
-    .clamp(true);
-
-var dispatch = d3.dispatch("sliderChange");
-
-var slider = d3.select(".slider")
-    .style("width", width + "px");
-
-var sliderTray = slider.append("div")
-    .attr("class", "slider-tray");
-
-var sliderHandle = slider.append("div")
-    .attr("class", "slider-handle");
-
-sliderHandle.append("div")
-    .attr("class", "slider-handle-icon")
-
-slider.call(d3.behavior.drag()
-    .on("dragstart", function() {
-      dispatch.sliderChange(x.invert(d3.mouse(sliderTray.node())[0]));
-      d3.event.sourceEvent.preventDefault();
-    })
-    .on("drag", function() {
-      dispatch.sliderChange(x.invert(d3.mouse(sliderTray.node())[0]));
-    }));
-
-dispatch.on("sliderChange.slider", function(value) {
-  sliderHandle.style("left", x(value) + "px")
-	console.log("slider!!!"); 
-	console.log(x(value)); 
-	
-	onMediaCheckBoxChange(null, x(value));
-	
-  
-});
-}
-
-
-
-
-onMediaCheckBoxChange(null); 
-
-</script>
-
 
 </body>
