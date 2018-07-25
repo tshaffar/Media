@@ -86,14 +86,15 @@ polyline{
 <body>
 
 <ul>
-    <li><a href="index.html">1</a></li>
-	<li><a href="p2.html">2</a></li>
+    <li><a                href="p0.html">start</a></li>
+	<li><a                href="p1.html">1</a></li>	
+	<li><a                href="p2.html">2</a></li>
 	<li><a class="active" href="p3.html">3</a></li>
-	<li><a href="p4.html">4</a></li>
-    <li><a href="p5.html">5</a></li>
-	<li><a href="p6.html">6</a></li>
-	<li><a href="p7.html">Next</a></li>
-	<li><a href="about.html">About Visualization</a></li>
+	<li><a                href="p4.html">4</a></li>
+    <li><a                href="p5.html">5</a></li>
+	<li><a                href="p2.html">Previous</a></li>
+	<li><a                href="p4.html">Next</a></li>
+	<li><a                href="about.html">About Visualization</a></li>
 </ul>
 
 
@@ -119,7 +120,7 @@ polyline{
 	<input type="checkbox" name="RemoveUS" id="RemoveUS"   onchange = "onMediaCheckBoxChange(this)" > Remove United States<br>
 	<input type="checkbox" id="RemoveChinaIndia"   onchange = "onMediaCheckBoxChange(this)" > Remove China And India<br>
 
-	 Show bottom % <input type="number" name="quantity" id="PercentShow" min="1" max="100" value="100"  onchange = "on20PercentChange(this, value)">
+	 Show bottom % <input type="number" name="quantity" id="PercentShow" min="1" max="100" value="100"  size="4" onchange = "on20PercentChange(this, value)">
 	
 	<br></br> 
 	<img src="kiosk.jpg"  width="230" height="170">
@@ -517,7 +518,7 @@ dispatch.on("sliderChange.slider", function(value) {
 
 
 
-onMediaCheckBoxChange(null); 
+onMediaCheckBoxChange(null, "Afghanistan" ); 
 
 </script>
 

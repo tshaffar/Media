@@ -81,14 +81,15 @@ polyline{
 <body>
 
 <ul>
-    <li><a href="index.html">1</a></li>
-	<li><a  class="active" href="p2.html">2</a></li>
-	<li><a href="p3.html">3</a></li>
-	<li><a href="p3.html">4</a></li>
-    <li><a href="p4.html">5</a></li>
-	<li><a href="p5.html">6</a></li>
-	<li><a href="p3.html">Next</a></li>
-	<li><a href="about.html">About Visualization</a></li>
+    <li><a                href="p0.html">start</a></li>
+	<li><a                href="p1.html">1</a></li>	
+	<li><a                href="p2.html">2</a></li>
+	<li><a                href="p3.html">3</a></li>
+	<li><a class="active" href="p4.html">4</a></li>
+    <li><a                href="p5.html">5</a></li>
+	<li><a                href="p3.html">Previous</a></li>
+	<li><a                href="p5.html">Next</a></li>
+	<li><a                href="about.html">About Visualization</a></li>
 </ul>
 
 
@@ -96,7 +97,7 @@ polyline{
 
 <div id="my_header">
 	 	<h2><font color="blue"><center>Internationl Coverage By US News Media Outlets</center></font></h2>
-        <p><font color="blue"><center>Whaich Media Outlets Cover a Specific Country the Most?</center></font></p>
+        <p><font color="blue"><center>Which Media Outlets Cover a Specific Country the Most?</center></font></p>
 		<p><font color="black"><center>Select a media source.  See how many articles each media outlet has on the country.</center></font></p>
 
 <!-- Chcek Boxes -->
@@ -114,6 +115,8 @@ polyline{
 <div id="countryname" class="countryname"> 
 </div>
 
+<div id=instructions> 
+</div> 
 	
 <!-- Pie Chart -->
 	<div id="my_pie" class="my_pie">	
@@ -134,6 +137,8 @@ path {
 
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="the_data.js"></script>
+
+
 <script>
 
 var svg = d3.select("#my_pie")
@@ -183,7 +188,7 @@ var key = function(d){
 	});
 */
 
-function change(data  ) {
+function changeIt(data  ) {
 
 	/* ------- PIE SLICES -------*/
 	var slice = svg.select(".slices").selectAll("path.slice")
@@ -324,7 +329,7 @@ function mapData ( color, mediaColors, country){
 }
 
 function animateCountry(country)
-{
+{/*
   var svg = d3.select("#countryname").append("svg")
       .attr("width", 200)
       .attr("height", 200)
@@ -337,7 +342,7 @@ function animateCountry(country)
 	console.log("here"); 
 	
 	console.log(svg); 
-	
+	*/
 }
 
 
@@ -381,7 +386,7 @@ var color = d3.scale.ordinal()
 	.range( theColors ); 
 
 var theData = mapData(color, mediaColors, value);
-change( theData );
+changeIt( theData );
 
 }
 
@@ -425,6 +430,7 @@ function PopulateCountries()
 PopulateCountries(); 
 //onCountryChange(null); 
 
+//talDropText("a", "instructions", 2000, 100, 250, 950, "Select a country (above) to begin)", "yellow", "red");
 
 </script>
 

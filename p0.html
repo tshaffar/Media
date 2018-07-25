@@ -65,13 +65,13 @@ svg {
 <body>
 
 <ul>
-    <li><a                href="p0.html">start</a></li>
+    <li><a class="active" href="p0.html">start</a></li>
 	<li><a                href="p1.html">1</a></li>	
 	<li><a                href="p2.html">2</a></li>
 	<li><a                href="p3.html">3</a></li>
 	<li><a                href="p4.html">4</a></li>
-    <li><a class="active" href="p5.html">5</a></li>
-	<li><a                href="about.html">Next</a></li>
+    <li><a                href="p5.html">5</a></li>
+	<li><a                href="p1.html">Next</a></li>
 	<li><a                href="about.html">About Visualization</a></li>
 </ul>
 
@@ -82,8 +82,9 @@ svg {
 		
 </div>
 
-<img src="kaggle.png" alt="Smiley face" height="42" width="42">
 
+<div id=newsticker> 
+</div> 
 
 <div id=instructions> 
 </div> 
@@ -142,31 +143,54 @@ function addTalNewTicker(id, x,y,width,color,list)
 </script>
 
 <script>
-
-
 // Add News
 var headlines = getSampleHeadlines(); 
 var format = d3.format(",d");
 
-//addTalNewTicker("#newsticker", 250,50, 800, "blue",headlines);
+addTalNewTicker("#newsticker", 250,50, 800, "blue",headlines);
+
+// Add Media 
+var medias = [ "New York Times",
+               "Washington Post", 
+			   "CNN", 
+			   "Fox News", 
+			   "Guardian", 
+			   "Reuters",
+			   "NPR",
+			   "New York Post"];
+
+addTalNewTicker("#newsticker", 250,100, 800, "green",medias);
+
+
+// Add Countries
+var data = theData(); 
+
+// Make a list of all the countries 
+dataMedia = data["New York Times"];
+
+keys = Object.keys(dataMedia); //data2.keys(); 
+
+countries = [];
+
+for (var key in dataMedia) {
+
+	countries.push( key); 
+	
+}
+addTalNewTicker("#newsticker", 250,150, 800, "red",countries);
 
 
 </script> 
 
 
 <script>
-talDropText("a", "instructions", 0, 100, 250, 950, "Step 1: Collect dataset from www.kagggle.com.snapcrack/all-new-news ", "red", "white");
-talDropText("b", "instructions", 0, 150, 300, 950, "It contained raw text of stories gathered in 2015 to 2017 from 15 media outlets ", "blue", "black");
 
-talDropText("c", "instructions", 0, 100, 400, 950, "Step 2: Text of strories was passed through Python script to see what countries are listed   ", "red", "white");
-talDropText("d", "instructions", 0, 150, 450, 950, "Took into account that countries like UK have multiple names ", "blue", "black");
-talDropText("f", "instructions", 0, 150, 500, 950, "...UK is known is United Kingdon, England, Great Britain... ", "blue", "black");
-talDropText("g", "instructions", 0, 150, 550, 950, "Had to eliminate Georgia...as it can be a state or a country ", "blue", "black");
+talDropText("a", "instructions", 0, 100, 250, 950, "We sampled stories from 8 media outlets over a year...", "yellow", "blue");
+talDropText("b", "instructions", 1000, 100, 300, 950, "...with the aim is to see how informed about the world a reader would be based on the content ", "yellow", "blue");
+talDropText("c", "instructions", 2000, 100, 350, 950, "...In other words, would watching FOX NEws makes a person more or less informed than listening to NPR? ", "yellow", "blue");
 
-talDropText("h", "instructions", 0, 100, 650, 950, "Step 4: Gathered population Data", "red", "white");
+talDropText("d", "instructions", 3000, 100, 400, 950, "click Next on the top to continue ", "yellow", "red");
 
-talDropText("i", "instructions", 0, 100, 750, 950, "Step 5: Crated D3 charts", "red", "white");
-talDropText("j", "instructions", 0, 150, 800, 950, "Note that even this text is using D3", "blue", "black");
 
 
 </script> 
